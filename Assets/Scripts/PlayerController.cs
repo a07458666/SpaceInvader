@@ -40,17 +40,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        transform.eulerAngles = new Vector3(pitch, yaw, 0f);
+        // transform.eulerAngles = new Vector3(pitch, yaw, 0f);
     }
 
     void FixedUpdate()
     {
         // transform.position += moveValue;
-        transform.Translate(moveValue);
+        // transform.Translate(moveValue);
     }
 
-    void OnFire()
-    {   
+    public void OnFire()
+    {
+        Debug.Log("OnFire");
         AudioSource audioData = rightHand.GetComponent<AudioSource>();
         audioData.Play(0);
 
@@ -83,7 +84,7 @@ public class PlayerController : MonoBehaviour
         return direction;
     }
 
-    void OnStrongFire()
+    public void OnStrongFire()
     {
         AudioSource audioData = rightHand.GetComponent<AudioSource>();
         audioData.Play(0);

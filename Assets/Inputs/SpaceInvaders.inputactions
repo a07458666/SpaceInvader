@@ -265,6 +265,17 @@
                 },
                 {
                     "name": "",
+                    "id": "1676a216-163f-485d-93a8-2e9e4beefe23",
+                    "path": "<XRController>{RightHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XR",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "fe0eca92-3074-4d77-afb6-059f28ce08ef",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",

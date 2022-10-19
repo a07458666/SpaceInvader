@@ -11,6 +11,14 @@ public class GameManager : MonoBehaviour
     public Text killText;
 
     public int m_wave;
+
+    public GameObject uiCanvas
+    public GameObject uiLevel;
+    public GameObject uiBOSS;
+    public GameObject uiEnd;
+    public GameObject uiClose;
+    public GameObject uiMenu;
+
     //states
     enum State { NotStarted, Playing, GameOver, WonGame }
 
@@ -120,5 +128,24 @@ public class GameManager : MonoBehaviour
             // remove all enemies
             enemyManager.KillAll();
         }
+    }
+
+    public void CloseUI()
+    {
+        uiLevel.SetActive(false);
+        uiBOSS.SetActive(false);
+        uiEnd.SetActive(false);
+        uiClose.SetActive(false);
+        uiMenu.SetActive(true);
+    }
+
+    public void OpenUI()
+    {
+        canvasUI.SetActive(true);
+        uiLevel.SetActive(true);
+        uiBOSS.SetActive(true);
+        uiEnd.SetActive(true);
+        uiClose.SetActive(true);
+        uiMenu.SetActive(false);
     }
 }
