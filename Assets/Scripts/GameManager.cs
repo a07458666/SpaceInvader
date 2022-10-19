@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
 
     public int m_wave;
 
-    public GameObject uiCanvas
     public GameObject uiLevel;
     public GameObject uiBOSS;
     public GameObject uiEnd;
@@ -141,7 +140,6 @@ public class GameManager : MonoBehaviour
 
     public void OpenUI()
     {
-        canvasUI.SetActive(true);
         uiLevel.SetActive(true);
         uiBOSS.SetActive(true);
         uiEnd.SetActive(true);
