@@ -10,8 +10,9 @@ public class PlayerController : MonoBehaviour
     public float bulletSpeed = 10;
     public float Ai = 10;
     public float drift = 0.1f;
-    // Gun
-    public GameObject gun;
+    // Hand
+    public GameObject rightHand;
+    public GameObject leftHand;
 
     // bullet prefab
     public GameObject bulletPrefab;
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     void OnFire()
     {   
-        AudioSource audioData = gun.GetComponent<AudioSource>();
+        AudioSource audioData = rightHand.GetComponent<AudioSource>();
         audioData.Play(0);
 
         // spawn a new bullet
@@ -59,22 +60,22 @@ public class PlayerController : MonoBehaviour
         // pass the game manager
         newBullet.GetComponent<BulletController>().gm = gm;
 
-        // position will be that of the gun
-        newBullet.transform.position = gun.transform.position;
+        // position will be that of the rightHand
+        newBullet.transform.position = rightHand.transform.position;
 
         // get rigid body
         Rigidbody bulletRb = newBullet.GetComponent<Rigidbody>();
 
         // give the bullet velocity
-        bulletRb.velocity = gun.transform.forward * bulletSpeed;
+        bulletRb.velocity = rightHand.transform.forward * bulletSpeed;
     }
 
     Vector3 GetRandomDir()
     {
-        Vector3 direction = gun.transform.forward; // your initial aim.
+        Vector3 direction = rightHand.transform.forward; // your initial aim.
         Vector3 spread = Vector3.zero;
-        spread+= gun.transform.up * Random.Range(-1f, 1f); // add random up or down (because random can get negative too)
-        spread+= gun.transform.right * Random.Range(-1f, 1f); // add random left or right
+        spread+= rightHand.transform.up * Random.Range(-1f, 1f); // add random up or down (because random can get negative too)
+        spread+= rightHand.transform.right * Random.Range(-1f, 1f); // add random left or right
 
         // Using random up and right values will lead to a square spray pattern. If we normalize this vector, we'll get the spread direction, but as a circle.
         // Since the radius is always 1 then (after normalization), we need another random call. 
@@ -84,19 +85,19 @@ public class PlayerController : MonoBehaviour
 
     void OnStrongFire()
     {
-        AudioSource audioData = gun.GetComponent<AudioSource>();
+        AudioSource audioData = rightHand.GetComponent<AudioSource>();
         audioData.Play(0);
         for (int i = 0; i < 9; i++)
         {   
-            Vector3 gunDir = GetRandomDir();
+            Vector3 rightHandDir = GetRandomDir();
             // spawn a new bullet
             GameObject newBullet = Instantiate(bulletPrefab);
 
             // pass the game manager
             newBullet.GetComponent<BulletController>().gm = gm;
 
-            // position will be that of the gun
-            newBullet.transform.position = gun.transform.position + new Vector3((i / 3) * drift, (i % 3) * drift, 0);
+            // position will be that of the rightHand
+            newBullet.transform.position = rightHand.transform.position + new Vector3((i / 3) * drift, (i % 3) * drift, 0);
             // newBullet.transform.scale = new Vector3(0.01f, 0.01f, 0.01f);
             // get rigid body
             Rigidbody bulletRb = newBullet.GetComponent<Rigidbody>();
