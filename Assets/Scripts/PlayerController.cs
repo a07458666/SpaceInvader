@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
+
     // Bullet velocity
     public float bulletSpeed = 10;
     public float Ai = 10;
@@ -31,16 +32,21 @@ public class PlayerController : MonoBehaviour
 
     Vector3 moveValue;
 
+    
+
+
     // Start is called before the first frame update
     void Start()
     {
         gm = GameObject.FindObjectOfType<GameManager>();
         moveValue = new Vector3(0.0f, 0.0f, 0.0f);
+
     }
 
     void Update()
     {
         // transform.eulerAngles = new Vector3(pitch, yaw, 0f);
+
     }
 
     void FixedUpdate()

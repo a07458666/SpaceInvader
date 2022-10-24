@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.XR.Interaction.Toolkit;
 public class GunController : MonoBehaviour
 {
     // Bullet velocity
@@ -13,15 +13,28 @@ public class GunController : MonoBehaviour
     public float maxAngle = 60.0f;
     // Start is called before the first frame update
     GameManager gm;
+
+    [Range(0, 1)]
+    public float intensity;
+    public float duration;
+
+    public XRBaseController controllerLeft;
+    public XRBaseController controllerRight;
+    public GameObject controllerHead;
+
     void Start()
     {
         gm = GameObject.FindObjectOfType<GameManager>();
+        //XRBaseInteractable interactable = GetComponent<XRBaseInteractable>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // = GetComponent<XRBaseController>();
+        // controllerHead.SendHapticImpulse(intensity, duration);
+
     }
 
     public void OnFire()
@@ -43,6 +56,8 @@ public class GunController : MonoBehaviour
 
         // give the bullet velocity
         bulletRb.velocity = this.transform.forward * bulletSpeed;
+        controllerLeft.SendHapticImpulse(intensity, duration);
+        controllerRight.SendHapticImpulse(intensity, duration);
     }
 
     Vector3 GetRandomDir()
@@ -80,6 +95,7 @@ public class GunController : MonoBehaviour
             // give the bullet velocity
             bulletRb.velocity = GetRandomDir() * bulletSpeed;
         }
-
+        controllerLeft.SendHapticImpulse(intensity, duration);
+        controllerRight.SendHapticImpulse(intensity, duration);
     }
 }
